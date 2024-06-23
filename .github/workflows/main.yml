@@ -29,7 +29,9 @@ jobs:
       - name: -编译内核
         run: |
           export PATH="$GITHUB_WORKSPACE/arm-linux-androideabi-4.9/bin:$GITHUB_WORKSPACE/aarch64-linux-android-4.9/bin:$GITHUB_WORKSPACE/clang-android/clang-r416183b1/bin:$PATH"
-          bash build.sh lmi
+          bash "$GITHUB_WORKSPACE"/build.sh lmi
+          mkdir "$GITHUB_WORKSPACE"/GithubRelease
+          mv "$GITHUB_WORKSPACE"/$ZIP_FILENAME "$GITHUB_WORKSPACE"/GithubRelease/$ZIP_FILENAME
       - name: -上传到Github Release
         uses: ncipollo/release-action@main
         with:
